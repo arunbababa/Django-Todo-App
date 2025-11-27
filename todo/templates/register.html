@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録</title>
+</head>
+<body>
+    <header>
+        <h1>ユーザー登録</h1>
+        <p>
+            既にアカウントをお持ちですか？
+            <a href="{% url 'todo:login' %}">ログインはこちら</a>
+        </p>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <button type="submit">登録</button>
+    </form>
+</body>
+</html>
+

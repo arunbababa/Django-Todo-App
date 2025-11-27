@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Todoを編集</title>
+</head>
+<body>
+    <header>
+        <h1>Todoを編集</h1>
+        <p>
+            <a href="{% url 'todoapp:todo-list' %}">一覧へ戻る</a>
+        </p>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            <label for="id_title">タイトル</label>
+            {{ form.title }}
+            {{ form.title.errors }}
+        </div>
+        <div>
+            <label for="id_description">説明</label>
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+        <div>
+            <label for="id_completed">
+                {{ form.completed }} 完了とする
+            </label>
+            {{ form.completed.errors }}
+        </div>
+        <button type="submit">更新</button>
+    </form>
+</body>
+</html>
+
